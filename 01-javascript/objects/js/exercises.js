@@ -62,3 +62,23 @@ for (let i = 0; i < library.length; i++) {
 //
 //
 //
+
+const favouriteMovie = {
+  title: 'O Brother! Where Art Thou?',
+  duration: 107,
+  stars: ['George Clooney', 'John Goodman', 'Gillian Welch', 'That Really Slinty Guy']
+};
+
+const ghostbusters = {
+  title: 'Ghostbusters',
+  duration: 105,
+  stars: ['Bill Murray', 'Dan Akroyd', 'Sigourney Weaver']
+};
+
+const describeMovie = function (movie) {
+  let info = `${ movie.title } lasts for ${ movie.duration } minutes. Stars: ${ movie.stars.join(', ') }`;
+  return info;
+};
+
+console.log( describeMovie(favouriteMovie) );
+console.log( describeMovie(ghostbusters) );
