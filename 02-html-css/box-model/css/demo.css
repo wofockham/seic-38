@@ -1,0 +1,30 @@
+/*
+
+Typically we set the box model to the new sizing rules once and for all,
+for every element on the page.
+
+NB: This property does not cascade from parents to children, so we need
+to apply it explicitly.
+
+* {
+  box-sizing: border-box;
+}
+
+*/
+
+body {
+  background-color: chartreuse;
+}
+
+.old {
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+}
+
+.new {
+  box-sizing: border-box;
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+}
