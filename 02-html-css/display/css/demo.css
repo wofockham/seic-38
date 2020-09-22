@@ -1,0 +1,48 @@
+body {
+  background-color: chartreuse;
+}
+
+.box {
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  border: 1px solid black; /* variadic */
+  text-align: center;
+  line-height: 300px; /* Cheap nasty way to vertically center small bits of text */
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block; /* float killer */
+}
+
+.none {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+/* Descendent selector */
+.spooky span {
+  visibility: hidden;
+}
+
+/* Pseudoselector */
+.spooky:hover {
+  background-color: black;
+}
+
+.spooky:hover span {
+  transition: 2s all;
+  visibility: visible;
+  color: yellow;
+}
