@@ -8,7 +8,8 @@ $(document).ready(function () {
     $('header').removeClass('active');
   });
 
+  const $img = $('img'); // Cacheing
   $(window).on('mousemove', function (event) {
-    $('img').css( 'opacity', event.clientY / window.innerHeight ); // value in the range 0-1
+    $img.css( 'opacity', event.clientY / window.innerHeight ); // value in the range 0-1
   });
 });
