@@ -18,7 +18,7 @@ $(document).ready(function () {
     const deposit = +$('#checking-amount').val();
     const currentBalance = +$('#checking-balance').text().slice(1); // Remove the "$"
     const newBalance = deposit + currentBalance;
-    $('#checking-balance').text('$' + newBalance)
+    $('#checking-balance').text('$' + newBalance);
 
     checkForZero();
   });
