@@ -6,4 +6,12 @@ class PlanetsController < ApplicationController
   def show
     @planet = Planet.find params[:id]
   end
+
+  def new
+  end
+
+  def create
+    planet = Planet.create :name => params[:name], :image => params[:image], :orbit => params[:orbit], :diameter => params[:diameter], :mass => params[:mass], :moons => params[:moons]
+    redirect_to planet_path(planet.id) # show
+  end
 end
