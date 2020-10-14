@@ -1,0 +1,9 @@
+<h2><%= @artist.name %></h2>
+
+<%= image_tag @artist.image, :class => 'feature' if @artist.image.present? %>
+<ul>
+  <li>Name: <%= link_to @artist.name, @artist %></li>
+  <li>Nationality: <%= @artist.nationality %></li>
+  <li>Date of birth: <%= @artist.dob.strftime '%A, %B %e, %Y' %></li>
+  <li>Period: <%= @artist.period %></li>
+</ul>
