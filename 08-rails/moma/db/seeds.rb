@@ -21,3 +21,7 @@ Work.create(:title => 'Portrait of Clive James', :year => '1991 - 1992', :medium
 Work.create(:title => 'The Naked Studio', :year => '1981', :medium => '1981', :style => 'Impressionist', :image => 'https://mona.net.au//media/37522/brett-whiteley-the-naked-studio-mona-01.jpg')
 
 puts "#{ Work.count } works created."
+
+# Associations
+Artist.first.works << Work.first
+Artist.last.works << Work.last
