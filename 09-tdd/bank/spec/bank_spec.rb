@@ -33,5 +33,19 @@ describe Bank do
       bank.withdraw 'Mad Robby', 800
       expect(bank.accounts['Mad Robby']).to eq 200
     end
+
+    it 'ignores withdrawals that exceed the balance' do
+      bank.create_account 'Gladys', 1
+      bank.withdraw 'Gladys', 1_000_000 # syntactic sugar
+      expect(bank.balance 'Gladys').to eq 1
+    end
+  end
+
+  describe '#balance' do
+    it 'returns the balance for some particular account' do
+      bank.create_account 'Charles', 5000
+      bal = bank.balance 'Charles'
+      expect(bal).to eq 5000
+    end
   end
 end
