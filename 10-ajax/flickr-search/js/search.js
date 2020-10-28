@@ -7,17 +7,17 @@ const searchFlickr = function (keywords) {
     api_key: '2f5ac274ecfac5a455f38745704ad084',
     text: keywords,
     format: 'json'
-  }).done(showImages);
+  }).done(showImages).done(function (info) {
+    console.log( info );
+  });
 };
 
 const showImages = function (results) {
-  // iterate through photo objects
   _( results.photos.photo ).each(function (photo) {
     const thumbnailURL = generateURL(photo);
-    console.log( thumbnailURL );
-  })
-    // figure out the URL
-    // display that URL in an img
+    const $img = $('<img>', {src: thumbnailURL});
+    $img.appendTo('#images'); // $('#images').append($img);
+  });
 };
 
 const generateURL = function (p) {
@@ -39,5 +39,14 @@ $(document).ready(function () {
     event.preventDefault(); // disable the form submission.
     const searchTerms = $('#query').val();
     searchFlickr(searchTerms);
+  });
+
+  // Extremely twitchy
+  $(window).on('scroll', function () {
+    const scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
+    if (scrollBottom <= 400) {
+      const searchTerms = $('#query').val();
+      searchFlickr(searchTerms);
+    }
   });
 });
