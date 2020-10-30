@@ -7,7 +7,7 @@ function App() {
       <HelloWorld />
       <HelloUser name="Groucho" instrument="guitar"/>
       <HelloUser name="Harpo" />
-      <HelloUser name="Chico" />
+      <HelloUser />
     </div>
   );
 }
