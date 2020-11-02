@@ -16,7 +16,7 @@ class SearchForm extends Component {
 
   _handleSubmit(event) {
     event.preventDefault();
-    console.log('about to search for', this.state.query);
+    this.props.onSubmit( this.state.query ); // call the event handler provided by our parent.
   }
 
   render() {
