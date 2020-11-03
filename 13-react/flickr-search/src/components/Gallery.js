@@ -4,7 +4,7 @@
 const Gallery = (props) => {
   return (
     <div>
-      { props.images.map( (url) => <img src={ url } key={ url } alt="Copyright Flickr" /> ) }
+      { props.images.map( (url) => (<img src={ url } key={ url } alt="Copyright Flickr" />) ) }
     </div>
   );
 };
