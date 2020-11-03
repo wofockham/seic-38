@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+const SERVER_URL = 'http://localhost:3000/secrets.json'; // Update this once deployed.
 
 class Secrets extends Component {
   constructor() {
     super();
     this.state = {
-      secrets: [{"id":1,"content":"test secret one","created_at":"2020-11-02T23:30:34.072Z","updated_at":"2020-11-02T23:30:34.072Z","url":"http://localhost:3000/secrets/1.json"},{"id":2,"content":"test secret two","created_at":"2020-11-02T23:30:49.146Z","updated_at":"2020-11-02T23:30:49.146Z","url":"http://localhost:3000/secrets/2.json"},{"id":3,"content":"further secret","created_at":"2020-11-02T23:30:59.853Z","updated_at":"2020-11-02T23:30:59.853Z","url":"http://localhost:3000/secrets/3.json"},{"id":4,"content":"additional secret","created_at":"2020-11-02T23:31:07.069Z","updated_at":"2020-11-02T23:31:07.069Z","url":"http://localhost:3000/secrets/4.json"}]
-    }
+      secrets: []
+    };
+
+    this.saveSecret = this.saveSecret.bind(this);
+
+    // Polling:
+    const fetchSecrets = () => {
+      axios.get(SERVER_URL).then((results) => {
+        this.setState({secrets: results.data});
+        setTimeout(fetchSecrets, 6000); // recursion alternative to setInterval
+      });
+    };
+
+    fetchSecrets();
+  }
+
+  saveSecret(content) {
+    axios.post(SERVER_URL, {content: content}).then((result) => {
+      // Add the new secret to the existing collection of secrets in state.
+      this.setState({secrets: [...this.state.secrets, result.data]});
+    });
   }
 
   render() {
     return (
       <div>
         <h1>Tell me all your secrets</h1>
-        <SecretForm />
+        <SecretForm onSubmit={ this.saveSecret } />
         <SecretList secrets={ this.state.secrets } />
       </div>
     );
@@ -20,9 +42,28 @@ class Secrets extends Component {
 }
 
 class SecretForm extends Component {
+  constructor() {
+    super();
+    this.state = {content: ''};
+    this._handleChange = this._handleChange.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+  }
+
+  _handleChange(event) {
+    this.setState({content: event.target.value});
+  }
+
+  _handleSubmit(event) {
+    event.preventDefault();
+    this.props.onSubmit( this.state.content );
+  }
+
   render() {
     return (
-      <h1>Form Coming Soon</h1>
+      <form onSubmit={ this._handleSubmit }>
+        <textarea onChange={ this._handleChange } />
+        <input type="submit" value="Tell" />
+      </form>
     );
   }
 }
