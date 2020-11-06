@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 const SERVER_URL = 'http://localhost:3000/secrets.json'; // Update this once deployed.
+// const SERVER_URL = 'http://7cb36b29ee40.ngrok.io/secrets.json'; // Update this once deployed.
 
 class Secrets extends Component {
   constructor() {
@@ -56,12 +57,13 @@ class SecretForm extends Component {
   _handleSubmit(event) {
     event.preventDefault();
     this.props.onSubmit( this.state.content );
+    this.setState({content: ''});
   }
 
   render() {
     return (
       <form onSubmit={ this._handleSubmit }>
-        <textarea onChange={ this._handleChange } />
+        <textarea onChange={ this._handleChange } value={ this.state.content } />
         <input type="submit" value="Tell" />
       </form>
     );
