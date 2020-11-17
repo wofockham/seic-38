@@ -46,4 +46,4 @@ const c = new Crawler({
   }
 });
 
-c.queue('https://lobste.rs/'); // TODO: let the user provide this via the command line
+c.queue(process.argv[2] || 'https://lobste.rs/');
