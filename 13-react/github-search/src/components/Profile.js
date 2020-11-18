@@ -10,9 +10,10 @@ class Profile extends Component {
     }
   }
 
+  // react lifecycle methods
   componentDidMount() {
     const { username } = this.props.match.params;
-    
+
     Github.getUserInfo(username).then(result => {
       this.setState({user: result.data});
     });
@@ -26,11 +27,53 @@ class Profile extends Component {
     return (
       <div>
         <h1>Profile for { this.props.match.params.username }</h1>
-        <h2>User info coming soon</h2>
-        <h2>Repositories coming soon</h2>
+        <UserInfo user={ this.state.user }/>
+        <Repositories repos={ this.state.repos } />
       </div>
     )
   }
 }
+
+const UserInfo = (props) => {
+  // conditional rendering
+  if (props.user === null) {
+    return <div>Loading...</div>;
+  }
+
+  const { login, followers, following, public_repos, public_gists } = props.user;
+
+  return (
+    <div>
+      <h3>Stats for { login }</h3>
+      <p>Followers: { followers }</p>
+      <p>Following: { following }</p>
+      <p>Repos: { public_repos  }</p>
+      <p>Gists: { public_gists }</p>
+    </div>
+  );
+};
+
+const Repositories = (props) => {
+  if (props.repos === null) {
+    return (<div>Loading...</div>);
+  }
+
+  const userRepos = props.repos.map((r) => (
+    <li key={ r.id }>
+      <a href={ r.html_url } target="_blank">
+        { r.name }
+      </a>
+    </li>
+  ));
+
+  return (
+    <div>
+      <h3>User Repos</h3>
+      <ul>
+        { userRepos }
+      </ul>
+    </div>
+  )
+};
 
 export default Profile;

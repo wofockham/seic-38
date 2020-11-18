@@ -8,7 +8,7 @@ import Home from './components/Home';
 import Search from './components/Search';
 import Profile from './components/Profile';
 
-// NB: Not a component: just a varible with some JSX
+// NB: Not a component: just a variable with some JSX
 const Routes = (
   <Router>
     <div>

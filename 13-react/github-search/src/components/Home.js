@@ -8,7 +8,7 @@ const Home = (props) => {
   const _gotoRandomUser = () =>{
     const students = ["sarahhae", "StaceyBros", "brittanylcrocker", "Forcebe", "gcrk", "Giti-mafakheri", "Justinmehmed", "BasilExpeditions", "lightgreener", "RobertStolehorst", "CullsGit", "rjbullough", "faridmasjedi", "JayOverall", "wrudder", "RaengC", "muhulbert85", "mjane668899"];
     const username = _(students).sample();
-    props.history.push(`/details/${ username }`);
+    props.history.push(`/details/${ username }`); // redirect
   }
 
   return (

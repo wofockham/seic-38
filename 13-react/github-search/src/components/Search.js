@@ -5,7 +5,7 @@ const Search = (props) => {
 
   const _handleSubmit = (e) => {
     e.preventDefault();
-    props.history.push(`/details/${ username }`);
+    props.history.push(`/details/${ username }`); // redirect
   };
 
   return (
