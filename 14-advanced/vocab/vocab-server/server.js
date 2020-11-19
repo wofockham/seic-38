@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
 
 mongoose.connect(
-  '',
+  `mongodb+srv://theBlade:${ process.env.MONGOPW }@cluster0.i0cbj.mongodb.net/test?retryWrites=true&w=majority`,
   { useNewUrlParser: true }
 );
 
