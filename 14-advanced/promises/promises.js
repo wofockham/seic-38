@@ -56,3 +56,17 @@ setTimeout(() => {
     console.log('Here they are again', moreSimpsons);
   });
 }, 8000);
+
+
+// await/async /////////////////////////////////////////////////////////////////
+// Further evolution of Promises, we can pretend that promises are actually synchronous.
+
+// readFile('simpsons.txt').then((data) => {
+//   console.log(data);
+// });
+const printSimpsons = async () => {
+  const data = await readFile('simpsons.txt');
+  console.log(data);
+};
+console.log('ASYNC/AWAIT EXAMPLE');
+printSimpsons();
