@@ -24,7 +24,7 @@ exports.read_a_word = (req, res) => {
 };
 
 exports.update_a_word = (req, res) => {
-  Vocab.findAndUpdate(
+  Vocab.findOneAndUpdate(
     { _id: req.params.wordId },
     req.body,
     { new: true }, // ??
