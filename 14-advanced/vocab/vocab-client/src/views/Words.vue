@@ -15,8 +15,16 @@
           <td>{{ word.english }}</td>
           <td>{{ word.german }}</td>
           <td width="75" class="center aligned"><router-link :to="{ name: 'show', params: { id: word._id} }">Show</router-link></td>
-          <td width="75" class="center aligned">Edit</td>
-          <td width="75" class="center aligned">Destroy</td>
+          <td width="75" class="center aligned">
+            <router-link :to="{ name: 'edit', params: { id: word._id }}">
+              Edit
+            </router-link>
+          </td>
+          <td width="75" class="center aligned">
+            <a :href="`/words/${word._id}`" @click.prevent="onDestroy(word._id)">
+              Destroy
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -31,6 +39,17 @@ export default {
   data() {
     return {
       words: []
+    }
+  },
+  methods: {
+    async onDestroy(id) {
+      const really = confirm('Are you sure?');
+      if (!really) return;
+
+      await api.deleteWord(id);
+      this.flash('Word deleted successfully', 'success');
+      const updatedWords = this.words.filter(word => word._id !== id);
+      this.words = updatedWords;
     }
   },
   async mounted() {

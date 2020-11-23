@@ -17,6 +17,7 @@
     </div>
 
     <div class="ui text container">
+      <flash-message class="myFlash"></flash-message>
       <div class="ui one column grid">
         <div class="column">
           <router-view />
@@ -40,8 +41,9 @@ export default {
   width: 250px;
   margin: 10px;
   position: absolute;
-  top: 50;
+  top: 50px;
   right: 0;
+  z-index: 1;
 }
 input {
   width: 300px;

@@ -23,7 +23,13 @@ export default {
   props: {
     word: {
       type: Object,
-      required: false
+      required: false,
+      default() {
+        return {
+          english: '',
+          german: ''
+        }
+      }
     }
   },
   data() {
