@@ -1,0 +1,16 @@
+%h1.heading.wednesday#justin Haml Demo
+
+%h2= 'hotdogs' * 5
+
+%h3= "Lucky number is: #{ @lucky_number }"
+
+%div.container
+  %p
+    %span Here is a span, inside a paragraph, inside a container
+  %p Second paragraph
+
+%ul
+  - ["Groucho", "Harpo", "Chico", "Zeppo", "Gummo"].each do |brother|
+    %li= brother
+
+%p HAML knows where to close a block based on your indentation.
