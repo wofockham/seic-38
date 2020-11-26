@@ -1,10 +1,22 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import { rhythm } from '../utils/typography';
 
 export default function Layout({ children }) {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  );
+
   return (
     <div css={css`
         margin: 0 auto;
@@ -20,7 +32,7 @@ export default function Layout({ children }) {
           font-style: normal;
           `}
         >
-          Inspired By Kittens
+          { data.site.siteMetadata.title }
         </h3>
       </Link>
       <Link to={'/about'} css={css`float: right;`}>About</Link>
